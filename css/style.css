@@ -1,0 +1,148 @@
+:root {
+    --negro: #050505;
+    --blanco: #ffffff;
+    --rojo: #a30000;
+    --oro: #d4af37;
+    --font-stix: 'STIX Two Text', serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
+
+body {
+    background-color: var(--negro);
+    color: var(--blanco);
+    font-family: var(--font-stix);
+    overflow: hidden;
+    cursor: grab;
+}
+
+/* NAV MINIMALISTA CORREGIDA */
+.side-nav {
+    position: fixed; left: 0; top: 0; width: 60px; height: 100vh;
+    border-right: 1px solid rgba(255,255,255,0.05);
+    background: var(--negro); z-index: 1000;
+    display: flex; align-items: center; justify-content: center;
+}
+.nav-links { display: flex; flex-direction: column; gap: 70px; }
+.nav-item {
+    writing-mode: vertical-rl; transform: rotate(180deg);
+    text-decoration: none; color: rgba(255,255,255,0.5);
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 3px;
+    position: relative; transition: 0.3s;
+}
+.nav-item::before {
+    content: ''; position: absolute; left: 50%; top: 0; width: 1px; height: 0;
+    background: var(--rojo); transition: 0.4s; transform: translateX(-50%);
+}
+.nav-item:hover { color: var(--blanco); }
+.nav-item:hover::before { height: 110%; top: -5%; }
+
+/* WRAPPER HORIZONTAL */
+.horizontal-wrapper {
+    display: flex;
+    width: fit-content;
+    height: 100vh;
+    margin-left: 60px;
+}
+
+.panel {
+    width: 100vw;
+    height: 100vh;
+    flex-shrink: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 5vw;
+}
+
+/* HERO CORREGIDO: LA IMAGEN YA NO ABARCA TODO */
+.hero-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 80vh; /* Limitamos altura */
+}
+
+.image-box {
+    width: 45%; /* Ocupa menos de la mitad */
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.8);
+}
+
+.fade-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, var(--negro));
+}
+
+.content-text {
+    width: 50%;
+    padding-left: 5vw;
+}
+
+.brand-name { font-family: 'Playfair Display', serif; font-size: 5rem; line-height: 0.85; margin-bottom: 20px;}
+.accent { color: var(--rojo); }
+.subtitle { color: var(--oro); letter-spacing: 12px; font-size: 0.8rem; margin-bottom: 15px; }
+.divider { width: 40px; height: 1px; background: var(--rojo); margin-bottom: 20px; }
+.description { font-style: italic; opacity: 0.6; font-size: 1.1rem; max-width: 400px; }
+
+/* GALERIA: 4 CUADROS */
+.gallery-panel { flex-direction: column; justify-content: center; align-items: flex-start; }
+.section-info { margin-bottom: 40px; }
+.step { color: var(--oro); font-size: 0.8rem; letter-spacing: 5px; }
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 250px);
+    gap: 20px;
+}
+
+.gallery-item {
+    height: 350px;
+    background: #111;
+    position: relative;
+    overflow: hidden;
+    transition: 0.5s ease;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.gallery-item img {
+    width: 100%; height: 100%; object-fit: cover;
+    opacity: 0.5; transition: 0.5s;
+}
+
+.gallery-item span {
+    position: absolute; bottom: 20px; left: 20px;
+    font-size: 0.7rem; letter-spacing: 3px; font-weight: 700;
+}
+
+.gallery-item:hover { border-color: var(--rojo); transform: translateY(-10px); }
+.gallery-item:hover img { opacity: 1; transform: scale(1.1); }
+
+/* SOCIAL */
+.social-wrapper h3 { font-size: 0.8rem; letter-spacing: 10px; color: var(--oro); margin-bottom: 30px; }
+.social-links { display: flex; flex-direction: column; gap: 20px; }
+.social-links a {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    text-decoration: none;
+    color: var(--blanco);
+    transition: 0.3s;
+}
+.social-links a:hover { color: var(--rojo); padding-left: 20px; }
+
+/* FOOTER */
+.footer-content { width: 100%; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 50px; }
+.footer-content h2 { font-family: 'Playfair Display', serif; font-size: 6rem; opacity: 0.1; margin-bottom: 40px; }
+.footer-details { display: flex; gap: 100px; font-size: 0.7rem; letter-spacing: 3px; }
