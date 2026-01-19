@@ -49,7 +49,17 @@ window.addEventListener('mousemove', (e) => {
     startX = x;
 });
 
+// Detectar si es móvil
+const isMobile = window.innerWidth <= 768;
+
 function update() {
+    // Si es móvil, no aplicamos la transformación horizontal
+    if (window.innerWidth <= 768) {
+        const wrapper = document.querySelector('.horizontal-wrapper');
+        wrapper.style.transform = `none`; // Resetear transformación
+        return; 
+    }
+
     const wrapper = document.querySelector('.horizontal-wrapper');
     const maxScroll = wrapper.offsetWidth - window.innerWidth;
     targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
@@ -57,4 +67,21 @@ function update() {
     wrapper.style.transform = `translateX(-${currentScroll}px)`;
     requestAnimationFrame(update);
 }
+
+// Solo activar wheel y mouse events si NO es móvil
+if (!isMobile) {
+    window.addEventListener("wheel", (evt) => {
+        evt.preventDefault();
+        targetScroll += evt.deltaY * 1.2; 
+    }, { passive: false });
+
+    // Aquí irían tus listeners de mousedown, mousemove existentes...
+}
+
+// Ejecutar update siempre, ella decidirá si animar o no
 update();
+
+// Re-evaluar si se cambia el tamaño de la ventana
+window.addEventListener('resize', () => {
+    location.reload(); // Recargar para recalcular anchos
+});
