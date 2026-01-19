@@ -145,4 +145,105 @@ body {
 /* FOOTER */
 .footer-content { width: 100%; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 50px; }
 .footer-content h2 { font-family: 'Playfair Display', serif; font-size: 6rem; opacity: 0.1; margin-bottom: 40px; }
+
 .footer-details { display: flex; gap: 100px; font-size: 0.7rem; letter-spacing: 3px; }
+
+/* --- RESPONSIVE DESIGN --- */
+
+@media (max-width: 768px) {
+    body {
+        overflow-y: auto; /* Permitir scroll vertical en móvil */
+        overflow-x: hidden;
+    }
+
+    /* NAV: La movemos a la parte inferior o la hacemos horizontal */
+    .side-nav {
+        width: 100vw;
+        height: 50px;
+        bottom: 0;
+        top: auto;
+        border-right: none;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .nav-links {
+        flex-direction: row; /* En horizontal */
+        gap: 20px;
+    }
+
+    .nav-item {
+        writing-mode: horizontal-tb;
+        transform: rotate(0);
+        font-size: 0.55rem;
+    }
+
+    /* WRAPPER: De horizontal a vertical */
+    .horizontal-wrapper {
+        display: block; /* Apilar secciones */
+        width: 100vw;
+        margin-left: 0; /* Quitar margen del nav lateral */
+    }
+
+    .panel {
+        width: 100vw;
+        height: auto; /* Altura automática según contenido */
+        min-height: 100vh;
+        padding: 80px 8vw; /* Más espacio arriba por el nav */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    /* HERO MOVIL */
+    .hero-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .image-box {
+        width: 100%;
+        height: 40vh;
+        margin-bottom: 30px;
+    }
+
+    .fade-overlay {
+        width: 100%;
+        height: 30%;
+        top: auto;
+        bottom: 0;
+        background: linear-gradient(to top, var(--negro), transparent);
+    }
+
+    .content-text {
+        width: 100%;
+        padding-left: 0;
+        text-align: center;
+    }
+
+    .brand-name { font-size: 3.5rem; }
+
+    /* GALERIA MOVIL */
+    .gallery-grid {
+        grid-template-columns: 1fr; /* Una columna */
+        width: 100%;
+    }
+
+    .gallery-item {
+        height: 250px;
+    }
+
+    /* SOCIAL MOVIL */
+    .social-links a {
+        font-size: 2rem;
+    }
+
+    /* FOOTER MOVIL */
+    .footer-content h2 {
+        font-size: 2.5rem;
+    }
+
+    .footer-details {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
